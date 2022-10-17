@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import './App.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from './reducer'
-import axios from 'axios'
+import { fetchPosts } from "./actions/posts";
+// import axios from 'axios'
 
 type Props = {
   value: any
@@ -28,14 +29,14 @@ function App({ value, onIncrement, onDecrement }: Props) {
     dispatch(fetchPosts()) // 함수를 dispatch할 수 없음. redux thunk를 쓰는 이유
   }, [])
 
-  const fetchPosts = (): any => {
-    return async function fetchPostsThunk(dispatch: any, getState: any) {
-      const response = await axios.get(
-        'https://jsonplaceholder.typicode.com/posts'
-      )
-      dispatch({ type: 'FETCH_POSTS', payload: response.data })
-    }
-  }
+  // const fetchPosts = (): any => {
+  //   return async function fetchPostsThunk(dispatch: any, getState: any) {
+  //     const response = await axios.get(
+  //       'https://jsonplaceholder.typicode.com/posts'
+  //     )
+  //     dispatch({ type: 'FETCH_POSTS', payload: response.data })
+  //   }
+  // }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTodoValue(e.target.value)
